@@ -4,6 +4,7 @@ from lexer import Lexer
 from parser import Parser
 from semantic import SemanticAnalyzer
 from tac import TACGenerator
+from optimizer import TACOptimizer
 from codegen import CodeGenerator
 
 app = Flask(__name__)
@@ -41,7 +42,11 @@ def compile_code():
         tac_gen = TACGenerator()
         tac_code = tac_gen.generate(ast)
         
-        # 5. Final Code Generation (Python)
+        # 5. Code Optimization
+        optimizer = TACOptimizer()
+        optimized_tac = optimizer.optimize(tac_code)
+        
+        # 6. Final Code Generation (Python)
         codegen = CodeGenerator()
         python_code = codegen.generate(ast)
         
@@ -60,6 +65,7 @@ def compile_code():
             "success": True,
             "python_code": python_code,
             "tac_code": tac_code,
+            "optimized_tac": optimized_tac,
             "tokens": token_list,
             "ast": ast_dict,
             "symbol_table": symbol_table,

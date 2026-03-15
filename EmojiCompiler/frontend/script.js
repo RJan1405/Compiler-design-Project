@@ -8,6 +8,12 @@ const traceTokens = document.getElementById('trace-tokens');
 const traceAst = document.getElementById('trace-ast');
 const traceSymbols = document.getElementById('trace-symbols');
 const traceTac = document.getElementById('trace-tac');
+const flowTokens = document.getElementById('flow-tokens');
+const flowAst = document.getElementById('flow-ast');
+const flowSymbols = document.getElementById('flow-symbols');
+const flowTac = document.getElementById('flow-tac');
+const flowOptimized = document.getElementById('flow-optimized');
+const flowPython = document.getElementById('flow-python');
 
 // Header Navigation
 function switchTab(tabId, element) {
@@ -51,6 +57,13 @@ function clearEditor() {
     if(traceAst) traceAst.textContent = '# No data';
     if(traceSymbols) traceSymbols.textContent = '# No data';
     if(traceTac) traceTac.textContent = '# No data';
+    
+    if(flowTokens) flowTokens.textContent = '# No data';
+    if(flowAst) flowAst.textContent = '# No data';
+    if(flowSymbols) flowSymbols.textContent = '# No data';
+    if(flowTac) flowTac.textContent = '# No data';
+    if(flowOptimized) flowOptimized.textContent = '# No data';
+    if(flowPython) flowPython.textContent = '# No data';
     
     updateLineNumbers();
 }
@@ -97,6 +110,14 @@ async function compileCode() {
             if(traceAst) traceAst.textContent = JSON.stringify(result.ast, null, 2);
             if(traceSymbols) traceSymbols.textContent = JSON.stringify(result.symbol_table, null, 2);
             if(traceTac) traceTac.textContent = result.tac_code ? result.tac_code.join('\n') : '# No TAC generated';
+
+            // Populate Flow Tab
+            if(flowTokens) flowTokens.textContent = JSON.stringify(result.tokens, null, 2);
+            if(flowAst) flowAst.textContent = JSON.stringify(result.ast, null, 2);
+            if(flowSymbols) flowSymbols.textContent = JSON.stringify(result.symbol_table, null, 2);
+            if(flowTac) flowTac.textContent = result.tac_code ? result.tac_code.join('\n') : '# No TAC generated';
+            if(flowOptimized) flowOptimized.textContent = result.optimized_tac ? result.optimized_tac.join('\n') : '# No Optimization';
+            if(flowPython) flowPython.textContent = result.python_code;
         } else {
             pythonOut.textContent = '# COMPILATION FAILED';
             consoleOut.textContent = `❌ ${result.error || (result.errors ? result.errors.join('\n') : 'Unknown Error')}`;

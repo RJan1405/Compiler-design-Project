@@ -22,8 +22,11 @@
                 <button class="nav-item active" onclick="switchTab('compiler', this)">
                     <span class="icon">💻</span> Compiler
                 </button>
-                <button class="nav-item" onclick="switchTab('live-pipeline', this)">
+                <!--<button class="nav-item" onclick="switchTab('live-pipeline', this)">
                     <span class="icon">🔍</span> Live Pipeline
+                </button>-->
+                <button class="nav-item" onclick="switchTab('compiler-flow', this)">
+                    <span class="icon">🌊</span> Flow
                 </button>
                 <button class="nav-item" onclick="switchTab('how-to-use', this)">
                     <span class="icon">📖</span> How to Use
@@ -96,6 +99,39 @@
                         </div>
                     </div>
                 </footer>
+            </section>
+
+            <!-- TAB 2.5: COMPILER FLOW -->
+            <section id="compiler-flow" class="tab-pane">
+                <div class="pipeline-trace-view">
+                    <h2 class="section-title">Full Compilation Pipeline</h2>
+                    <div class="trace-grid">
+                        <div class="trace-segment">
+                            <div class="segment-header">1. Lexical Analysis</div>
+                            <pre id="flow-tokens" class="trace-box"># Token stream...</pre>
+                        </div>
+                        <div class="trace-segment">
+                            <div class="segment-header">2. Syntax Analysis</div>
+                            <pre id="flow-ast" class="trace-box"># AST Structure...</pre>
+                        </div>
+                        <div class="trace-segment">
+                            <div class="segment-header">3. Semantic Analysis</div>
+                            <pre id="flow-symbols" class="trace-box"># Symbol Table...</pre>
+                        </div>
+                        <div class="trace-segment">
+                            <div class="segment-header">4. Intermediate Code</div>
+                            <pre id="flow-tac" class="trace-box"># TAC Code...</pre>
+                        </div>
+                        <div class="trace-segment">
+                            <div class="segment-header">5. Code Optimization</div>
+                            <pre id="flow-optimized" class="trace-box"># Optimized TAC...</pre>
+                        </div>
+                        <div class="trace-segment">
+                            <div class="segment-header">6. Code Generation</div>
+                            <pre id="flow-python" class="trace-box"># Final Python...</pre>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- TAB 2: LIVE PIPELINE -->
